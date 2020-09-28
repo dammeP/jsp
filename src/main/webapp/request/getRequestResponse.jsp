@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% request.setCharacterEncoding("utf-8") %>
+	<% request.setCharacterEncoding("utf-8"); %>
 	<h1>GET</h1>
 	userId 파라미터는 brown, sally 두개를 보내지만 getParameter를 호출하면
 	첫번째 파라미터 값을 반환<br>
