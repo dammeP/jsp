@@ -57,7 +57,7 @@
   </error-page>
   
   <error-page>
-  	<exception-type>java.lang.ArithmeticException</exception-type>
+  	<exception-type>java.lang.ArithmeticException</exception-type> 
   	<location>/error/arithmeticException.jsp</location>
   </error-page>
   

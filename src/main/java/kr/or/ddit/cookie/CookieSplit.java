@@ -3,15 +3,15 @@ package kr.or.ddit.cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CookiesSplit {
-	private static final Logger logger = LoggerFactory.getLogger(CookiesSplit.class);
+public class CookieSplit {
+	private static final Logger logger = LoggerFactory.getLogger(CookieSplit.class);
 	
 	// cookieString 문자열 변수에 담긴 값은
 	// 쿠키이름1=쿠키값1; 쿠키이름2=쿠키값2; .... 형태로 구성됨
 	// 구성된 쿠키 이름과 값은 상황에 따라 변경될 수 있음
 	private String cookieString = "USERNM=brown; REMEMBERME=Y; TEST=T; ";
 	public static void main(String[] args) {
-		CookiesSplit cookieSplit = new CookiesSplit();
+		CookieSplit cookieSplit = new CookieSplit();
 		logger.debug(cookieSplit.getCookieValue("USERNM"));	// 기대되는 값 brown
 		logger.debug(cookieSplit.getCookieValue("REMEMBERME"));	// 기대되는 값 T
 		logger.debug(cookieSplit.getCookieValue("XXXX"));	// 기대되는 값 ""(WHITE SPACE)
