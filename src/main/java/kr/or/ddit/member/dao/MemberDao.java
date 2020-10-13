@@ -26,6 +26,7 @@ public class MemberDao implements MemberDaoI{
 		// 여러건 : selectList
 		
 		MemberVO memberVO = sqlSession.selectOne("member.getMember", userId);
+		sqlSession.close();
 		
 		
 		
@@ -37,6 +38,11 @@ public class MemberDao implements MemberDaoI{
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		
 		List<MemberVO> memberList = sqlSession.selectList("member.selectAllMember");
+		
+//		sqlSession.commit();		// insert, update, delete할때는 이것을 수행해주고 그다음에 close를 수행해주어야 한다.
+//		sqlSession.rollback();
+		
+		sqlSession.close();
 		
 		return memberList;
 	}

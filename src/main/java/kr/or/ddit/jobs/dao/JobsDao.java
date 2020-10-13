@@ -14,6 +14,7 @@ public class JobsDao implements JobsDaoI{
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		
 		List<JobsVO> jobsList = sqlSession.selectList("jobs.getAllJobs");
+		sqlSession.close();		// session 닫아주기
 		
 		return jobsList;
 	}
