@@ -22,6 +22,13 @@ import kr.or.ddit.member.service.MemberServiceI;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
+	private MemberServiceI memberService;
+	
+	@Override
+	public void init() throws ServletException {
+		// service 객체 생성
+		memberService = new MemberService();
+	}
        
 	// login 화면을 클라이언트에게 응답으로 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		SELECT * FROM 회원
 		WHERE 회원아이디 = 파라미터로 넘어온 userId; */
 		
-		MemberServiceI memberService = new MemberService();
+		
 		MemberVO memberVO = memberService.getMember(userId);
 
 		// DB에 등록된 회원이 없거나, 비밀번호가 틀린 경우 (로그인페이지)
