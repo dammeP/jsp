@@ -36,7 +36,7 @@
 	  GET POST 두가지를 선택할수 있는 라디오 버튼을 만들어서
 	  FORM전송시 사용자가 GET, POST 방식을 지정할 수 있도록<br>
 	  
-	  <form action="<%=request.getContextPath() %>/request/getRequestResponse.jsp" method="GET">
+	  <form action="${pageContext.request.contextPath }/request/getRequestResponse.jsp" method="GET">
 	  	GET<input type="radio" name="gp">
 	  	POST<input type="radio" name="gp"><br>
 	  	

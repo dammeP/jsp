@@ -19,4 +19,9 @@ public class MemberService implements MemberServiceI {
 	public MemberVO getMember(String userId) {
 		return memberDao.getMember(userId);
 	}
+
+	@Override
+	public List<MemberVO> selectAllMember() {
+		return memberDao.selectAllMember();
+	}
 }

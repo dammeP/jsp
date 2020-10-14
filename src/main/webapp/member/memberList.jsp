@@ -1,5 +1,3 @@
-<%@page import="kr.or.ddit.jobs.VO.JobsVO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
@@ -36,20 +34,19 @@
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<tr>
-					<th>JOb_ID</th>
-					<th>JOb_TITLE</th>
+					<th>사용자 아이디</th>
+					<th>사용자 이름</th>
+					<th>사용자 별명</th>
+					<th>등록일시</th>
 				</tr>
-				<%
-					List<JobsVO> JobsList = (List<JobsVO>)request.getAttribute("jobsList");
-					for(int i=0; i<JobsList.size(); i++){
-				%>
-				<tr>
-					<td><%=JobsList.get(i).getJob_id() %></td>
-					<td><%=JobsList.get(i).getJob_title() %></td>
-				</tr>
-				<% 		
-					}
-				%>
+				<c:forEach items="${memList }" var="memList">
+					<tr>
+						<td>${memList.userid }</td>
+						<td>${memList.usernm }</td>
+						<td>${memList.alias }</td>
+						<td>${memList.reg_dt }</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 
