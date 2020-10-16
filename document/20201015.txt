@@ -1,0 +1,1 @@
+service, dao selectMemberPageList 메소드 테스트 코드 작성

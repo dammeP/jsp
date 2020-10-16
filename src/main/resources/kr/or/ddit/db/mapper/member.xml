@@ -7,13 +7,34 @@
     SELECT * 
     FROM users 
     WHERE userid = #{userId}
-    
-    
   </select>
   
   <select id="selectAllMember" resultType="MemberVO">
-   SELECT * 
-   FROM users
-  
+  	SELECT *
+	FROM
+	    (SELECT ROWNUM rn, a.* 
+	     FROM
+	        (SELECT *
+	         FROM users
+	         ORDER BY userid) a )    
+    WHERE rn BETWEEN 1 AND 7       
+<!-- 	WHERE rn BETWEEN (:page -1) * :pageSize +1 AND :page * :pageSize -->
   </select>
+  
+  <select id="selectAllMemberPage" parameterType="PageVO" resultType="MemberVO">
+	SELECT *
+	FROM
+	    (SELECT ROWNUM rn, a.* 
+	     FROM
+	        (SELECT *
+	         FROM users
+	         ORDER BY userid) a )    
+	WHERE rn BETWEEN (#{page} -1) * #{pageSize} +1 AND #{page} * #{pageSize}
+  </select>
+  
+  <select id="selectMemberTotalCount" resultType="int">
+  	SELECT COUNT(*)
+  	FROM users
+  </select>
+  
 </mapper>

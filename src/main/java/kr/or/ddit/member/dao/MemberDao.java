@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.ddit.common.model.PageVO;
 import kr.or.ddit.db.MybatisUtil;
 import kr.or.ddit.member.model.MemberVO;
 
@@ -36,7 +37,6 @@ public class MemberDao implements MemberDaoI{
 	@Override
 	public List<MemberVO> selectAllMember() {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
-		
 		List<MemberVO> memberList = sqlSession.selectList("member.selectAllMember");
 		
 //		sqlSession.commit();		// insert, update, delete할때는 이것을 수행해주고 그다음에 close를 수행해주어야 한다.
@@ -45,6 +45,26 @@ public class MemberDao implements MemberDaoI{
 		sqlSession.close();
 		
 		return memberList;
+	}
+
+	@Override
+	public List<MemberVO> selectAllMemberPage(PageVO pageVO) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		List<MemberVO> memberListPage = sqlSession.selectList("member.selectAllMemberPage", pageVO);
+		
+		sqlSession.close();
+		
+		return memberListPage;
+	}
+
+	@Override
+	public int selectMemberTotalCount() {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int totalCount = sqlSession.selectOne("member.selectMemberTotalCount");
+		
+		sqlSession.close();
+		
+		return totalCount;
 	}
 	
 	
