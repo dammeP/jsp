@@ -18,7 +18,7 @@ java ee에서 URL을 처리하는 과정
 		
 		<url-pattern>/</url-pattern>
 		url-pattern의 /이 의미하는 것은 경로가 아니라
-		server, web 어플리케이션에 설정된 url-mappling에서 처리 못하는 요청들을
+		server, web 어플리케이션에 설정된 url-mapping에서 처리 못하는 요청들을
 		최종적으로 처리해주는 역할을 하는 서블릿을 지칭(default-servlet)
 		
 

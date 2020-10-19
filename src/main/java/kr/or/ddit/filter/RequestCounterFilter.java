@@ -64,7 +64,13 @@ public class RequestCounterFilter implements Filter{
 		
 		// 등록된 다른 필터로 요청 위임
 		// 만약에 더이상 등록된 Filter가 없을경우 요청을 처리할 서블릿 / jsp으로 요청을 전달
-		chain.doFilter(request, response);
+		
+		전처리
+		
+		chain.doFilter(request, response); // servlet 처리
+		
+		후처리 - servlet 응답생성후 응답이 웹브라우저로 가는단계에서 후속처리
+		
 	}
 
 	@Override
