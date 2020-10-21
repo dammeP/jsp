@@ -34,7 +34,7 @@ public class RedirectServlet extends HttpServlet {
 		logger.debug("redirectServlet {} {}", "doGet()", "test" );
 //		logger.debug("redirectServlet.doGet()");
 		
-		// 응답을 다른 jsp에게 위임 하는 첫번째 방법 : redirect
+		// 응답을 다른 jsp에게 위임하는 첫번째 방법 : redirect
 		// response 객체의  sendRedirect 메소드를 통해
 		// 클라이언트에게 재 요청을 보낼 주소를 알려준다
 		
