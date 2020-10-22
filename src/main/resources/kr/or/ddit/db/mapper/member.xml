@@ -37,4 +37,13 @@
   	FROM users
   </select>
   
+  <insert id="insertMember" parameterType="MemberVO">
+	INSERT INTO users VALUES(#{userid}, #{usernm}, #{pass}, SYSDATE, #{alias}, #{addr1}, #{addr2}, #{zipcode}, #{filename}, #{realfilename})
+  </insert>
+  
+  <delete id="deleteMember" parameterType="String">
+  	DELETE users
+  	WHERE userid = #{userid}
+  </delete>
+  
 </mapper>

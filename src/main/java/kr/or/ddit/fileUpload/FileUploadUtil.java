@@ -17,13 +17,23 @@ public class FileUploadUtil {
 			if(fileNamesList[0].equals("filename")) {
 				return fileNamesList[1].replaceAll("\"", "");		// 더블 쿼테이션 제거
 			}
-			
-			
+		}
+		return "";
+	}
+	
+	// filename : sally.png ==> png
+	public static String getExtenstion(String filename) {
+//		String[] filenameArr = filename.split(".");
+//		return filenameArr[1];
+
+		if(filename == null || filename.indexOf(".") == -1) {
+			return "";
+		}
+		else {
+			return filename.split("[.]")[1];
 		}
 		
 		
-		
-		return "";
 	}
 
 }

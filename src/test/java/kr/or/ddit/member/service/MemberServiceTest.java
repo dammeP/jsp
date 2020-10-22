@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,17 +60,18 @@ public class MemberServiceTest {
 		
 	}
 	
-	@Test
-	public void selectMemberTotalCountTest() {
-		/***Given***/
-		MemberServiceI memberService = new MemberService();
-
-		/***When***/
-		int totalCount = memberService.selectMemberTotalCount();
-		
-		/***Then***/
-		assertEquals(15, totalCount);
-	}
+//	@Test
+//	public void selectMemberTotalCountTest() {
+//		/***Given***/
+//		MemberServiceI memberService = new MemberService();
+//		SqlSession sqlSession;
+//
+//		/***When***/
+//		int totalCount = memberService.selectMemberTotalCount(sqlSession);
+//		
+//		/***Then***/
+//		assertEquals(15, totalCount);
+//	}
 
 	@Test
 	public void localeListTest() {
@@ -77,5 +79,18 @@ public class MemberServiceTest {
 		for(Locale locale : locales) {
 			logger.debug(locale.toString());
 		}
+	}
+	
+	@Test
+	public void insertMemberTest() {
+		/***Given***/
+		MemberServiceI memberService = new MemberService();
+		MemberVO memberVO = new MemberVO("pdm", "pass1234", "박다미", "dam", "대전 중구 중앙로 76", "영민빌딩 404호", "34940", "d:\\profile\\dam.png", "dam.png");
+
+		/***When***/
+		int insertCnt = memberService.insertMember(memberVO);
+
+		/***Then***/
+		assertEquals(1,  insertCnt);
 	}
 }

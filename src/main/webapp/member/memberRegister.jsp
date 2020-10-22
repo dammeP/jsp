@@ -15,17 +15,45 @@
 <title>Jsp</title>
 
 <%@ include file="/layout/commonLib.jsp" %>
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-$(function(){
-	$('#updateBtn').on('click',function(){
-	var userid = $('#userid_lb').data("userid");
+$(document).ready(function(){
+	$('#zipcodeBtn').on('click',function(){
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+				console.log(data);
 
-	document.location="/memberUpdate?userid=" + userid;
+				$('#addr1').val(data.roadAddress);
+				$('#zipcode').val(data.zonecode);
+				
+	        }
+	    }).open();
 	})
+
+	$('#regBtn').on('click',function(){
+		// client side - validation
+		// server side - validation
+		// validation 로직은 일단 생략
+
+		$('#frm').submit();
+	})
+// 	initData();
 })
 
+// function initData(){
+// 	$('#userid').val('pdm');
+// 	$('#usernm').val('박다미');
+// 	$('#alias').val('dam');
+// 	$('#pass').val('pass1234');
+// 	$('#addr1').val('대전 대구 중앙로 76');
+// 	$('#addr2').val('영민빌딩 4층 404호');
+// 	$('#zipcode').val('34904');
+// }
+
+
 </script>
+
+
 </head>
 
 <body>
@@ -39,77 +67,68 @@ $(function(){
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 
-				<form class="form-horizontal" role="form"  >
+				<form id="frm" class="form-horizontal" role="form" action="${cp }/memberRegist" method="POST" enctype="multipart/form-data">
 				
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
-<%-- 							<img src="${cp }/profile/${memberVO.filename }"/> --%>
-							
-							<img src="${cp }/profileImg?userid=${memberVO.userid}"/>
+							<input type="file" name="realFilename"/>
 						</div>
 					</div>
 				
 					<div class="form-group">
-						<label id="userid" for="userid" class="col-sm-2 control-label">사용자 아이디</label>
+						<label for="userid" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-							<label id="userid_lb" data-userid="${memberVO.userid }" class="control=label">${memberVO.userid }</label>
+							<input type="text" class="form-control" id="userid" name="userid" placeholder="사용자 아이디" value="${param.userid }"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
 						<div class="col-sm-10">
-							<label class="control=label">${memberVO.usernm }</label>
+							<input type="text" class="form-control" id="usernm" name="usernm" placeholder="사용자 이름"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">별명</label>
 						<div class="col-sm-10">
-							<label class="control=label">${memberVO.alias }</label>
+							<input type="text" class="form-control" id="alias" name="alias" placeholder="사용자 별명"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-10">
-							<label class="control=label">********</label>
+							<input type="password" class="form-control" id="pass" name="pass" placeholder="사용자 비밀번호"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="addr1" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
-							<label class="control=label">${memberVO.addr1 }</label>
+							<input type="text" class="form-control" id="addr1" name="addr1" placeholder="사용자 주소" READONLY/>
+							<button id="zipcodeBtn"type="button" class="btn btn-default">우편번호 찾기</button>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="addr2" class="col-sm-2 control-label">상세주소</label>
 						<div class="col-sm-10">
-							<label class="control=label">${memberVO.addr2 }</label>
+							<input type="text" class="form-control" id="addr2" name="addr2" placeholder="사용자 상세주소" value="${param.addr2 }"/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="zipcode" class="col-sm-2 control-label">우편번호</label>
 						<div class="col-sm-10">
-							<label class="control=label">${memberVO.zipcode }</label>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="reg_dt" class="col-sm-2 control-label">등록일자</label>
-						<div class="col-sm-10">
-							<label class="control=label"><fmt:formatDate value="${memberVO.reg_dt}" pattern="YYYY-MM-dd"/></label>
+							<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="사용자 우편번호" READONLY/>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button id="updateBtn" type="button" class="btn btn-default"  ><a href="${cp }/memberUpdate">사용자 수정</a></button>
-<%-- 							<a href="${cp }/memberRegist" class="btn btn-default pull-right">사용자 등록</a> --%>
+							<button id="regBtn" type="button" class="btn btn-default">사용자 등록</button>
 						</div>
 					</div>
 				</form>
