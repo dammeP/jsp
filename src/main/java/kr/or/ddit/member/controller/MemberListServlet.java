@@ -39,7 +39,7 @@ public class MemberListServlet extends HttpServlet {
 		
 		// pageSize
 		String pageSize_str = request.getParameter("pageSize");
-		int pageSize = pageSize_str == null ? 6 : Integer.parseInt(page_str); 
+		int pageSize = pageSize_str == null ? 8 : Integer.parseInt(page_str); 
 		request.setAttribute("pageSize", pageSize);
 		
 		// pageVO : page, pageSize

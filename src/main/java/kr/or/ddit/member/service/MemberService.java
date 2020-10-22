@@ -60,4 +60,10 @@ public class MemberService implements MemberServiceI {
 		return memberDao.deleteMember(userid);
 	}
 
+	@Override
+	public int updateMember(MemberVO memberVO) {
+		return memberDao.updateMember(memberVO);
+	}
+	
+
 }

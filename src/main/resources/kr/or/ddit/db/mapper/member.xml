@@ -46,4 +46,8 @@
   	WHERE userid = #{userid}
   </delete>
   
+  <update id="updateMember" parameterType="MemberVO">
+  	UPDATE users SET usernm = #{usernm}, pass = #{pass}, alias = #{alias}, addr1 = #{addr1}, addr2 = #{addr2}, zipcode = #{zipcode} where userid=#{userid}
+  </update>
+  
 </mapper>

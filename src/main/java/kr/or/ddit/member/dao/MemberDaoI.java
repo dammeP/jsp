@@ -20,4 +20,6 @@ public interface MemberDaoI {
 
 	int deleteMember(String userid);
 	
+	int updateMember(MemberVO memberVO);
+	
 }

@@ -11,7 +11,7 @@ import kr.or.ddit.member.model.MemberVO;
 public class MemberDao implements MemberDaoI{
 
 	@Override
-	public MemberVO getMember(String userId) {
+	public MemberVO getMember(String userid) {
 		// 원래는 db에서 데이터를 조회하는 로직이 있어야 하나
 		// 우리는 controller기능에 집중 => 하드코딩을 통해 dao, service는 간략하게 넘어간다
 		//	Mock (가짜)
@@ -26,7 +26,7 @@ public class MemberDao implements MemberDaoI{
 		// 한건 : selectOne
 		// 여러건 : selectList
 		
-		MemberVO memberVO = sqlSession.selectOne("member.getMember", userId);
+		MemberVO memberVO = sqlSession.selectOne("member.getMember", userid);
 		sqlSession.close();
 		
 		
@@ -101,6 +101,23 @@ public class MemberDao implements MemberDaoI{
 		sqlSession.close();
 		
 		return deleteCnt;
+	}
+
+	@Override
+	public int updateMember(MemberVO memberVO) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int updateCnt = 0;
+		
+		sqlSession.update("member.updateMember", memberVO.getUserid());
+		
+		if(updateCnt == 1) {
+			sqlSession.commit();
+		}
+		else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return updateCnt;
 	}
 	
 	

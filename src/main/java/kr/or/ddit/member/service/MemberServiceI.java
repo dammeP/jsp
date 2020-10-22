@@ -11,7 +11,7 @@ import kr.or.ddit.member.model.MemberVO;
 
 public interface MemberServiceI {
 
-	MemberVO getMember(String userId);
+	MemberVO getMember(String userid);
 	
 	List<MemberVO> selectAllMember();
 	
@@ -22,4 +22,6 @@ public interface MemberServiceI {
 	int insertMember(MemberVO memberVO);
 	
 	int deleteMember(String userid);
+	
+	int updateMember(MemberVO memberVO);
 }
